@@ -1,5 +1,6 @@
 # phain-tf
-A repository and [webpage](____________) accompanying the paper *_________PHAIN_TF_______________*.
+A repository and [webpage](____________) accompanying the paper *Audio Inpainting in Time-frequency Domain
+with Phase-aware Prior*.
 
 > ****Abstract****
 
@@ -20,4 +21,6 @@ to do
 
 
 ## Dependencies
-The Matlab codes for U-PHAIN-TF use the [LTFAT](https://ltfat.org/) and the Signal Processing Toolbox. To compute the perceptually-motivated evaluation, we have used the [PEMO-Q package](https://uol.de/en/mediphysics/downloads/pemo-q) (version 1.4.1).
+The Matlab codes for U-PHAIN-TF use the [LTFAT](https://ltfat.org/) and the Signal Processing Toolbox. We used Matlab R2025a in our experiments.
+
+To compute the perceptually-motivated evaluation, we have used the [PEMO-Q package](https://uol.de/en/mediphysics/downloads/pemo-q) (version 1.4.1).
