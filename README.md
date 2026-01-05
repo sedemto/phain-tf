@@ -1,4 +1,4 @@
-# phain-tf
+# U-PHAIN-TF
 A repository and [webpage](____________) accompanying the TASLP research paper *Audio Inpainting in Time-frequency Domain
 with Phase-aware Prior*.
 
