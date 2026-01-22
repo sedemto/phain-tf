@@ -9,12 +9,9 @@ close all
 clear 
 clc
 ltfatstart
-rng(0)
-
-
+addpath(genpath('../dataset/'))
 %% loading
 
-% soundDir = "dataset/";
 soundDir = "../dataset/DPAI_originals/";
 ext = ".wav";
 Sounds = dir(soundDir + "*" + ext);
@@ -32,7 +29,7 @@ methodLabels = {'U_PHAIN_TF_GCPA'};
 for i = 1:length(methodLabels)
     solution.(methodLabels{i}) = cell(NN);  % initialization of restored results
 end
-SNR_spec  = NaN(NN, 6, length(methodLabels)); % 6 masks, NN=number of sigs
+SNR_sgram  = NaN(NN, 6, length(methodLabels)); % 6 masks, NN=number of sigs
 SNR_sig  = NaN(NN, 6, length(methodLabels));
 TIME = NaN(NN, 6, length(methodLabels));
 REC_sig = cell(NN, 6, length(methodLabels));
@@ -58,29 +55,45 @@ else
 end
 
 % setup DGT, invDGT and derivative of DGT using LTFAT
-param.S = @(x) comp_sepdgtreal(x, g, a, M, phasetype);
-param.S_adj = @(u) comp_isepdgtreal(u, g, size(u,2)*a, a, M, phasetype);
-param.S_diff = @(x) comp_sepdgtreal(x, g_diff, a, M, phasetype);
+param.G = @(x) comp_sepdgtreal(x, g, a, M, phasetype);
+param.G_adj = @(u) comp_isepdgtreal(u, g, size(u,2)*a, a, M, phasetype);
+param.G_diff = @(x) comp_sepdgtreal(x, g_diff, a, M, phasetype);
 
 % definition of instantaneous frequency (omega)
-param.omega = @(x) calcInstFreq(param.S(x), param.S_diff(x), M, w);
+param.omega = @(x) calcInstFreq(param.G(x), param.G_diff(x), M, w);
 
-% def.of phase correction (R) and time-directional difference (D)
-param.R = @(z, omega) instPhaseCorrection(z, omega, a, M);
-param.R_adj =  @(z, omega) invInstPhaseCorrection(z, omega, a, M);
-param.D = @(z) z(:,1:end-1) - z(:,2:end);
-param.D_adj = @(z) [z(:,1), (z(:,2:end) - z(:,1:end-1)), -z(:,end)];
+% define phase rotations and time-directional difference (D)
+param.phaseCor = @(omega) rotations(omega, a, M);
+param.D = @(z) -diff(z,1,2);
+param.D_adj = @(z) [z(:,1), (diff(z,1,2)), -z(:,end)];
 
-% padding around each spectrogram gap
+% minimal padding around each spectrogram gap
 pad = 4;
 
-% settings for generalized CP algorithm
+% settings for generalized Chambolle-Pock algorithm
 paramsolver.epsilon = 0.001;  % for stopping criterion
 paramsolver.tau = 0.25;  % step size
 paramsolver.sigma = 1;  % step size
 paramsolver.eta = 4; % step size
 paramsolver.alpha = 1;  % relaxation parameter
 paramsolver.lambda = 0.01; % threshold (regularization parameter)
+
+% p = 0.9; % uncomment for p-shrinkage thresholding
+% alpha = 10e-2; % uncomment for smooth-hard threshodling 
+
+% set inner and outer iterations for U−PHAIN
+paramsolver.I = 500;
+paramsolver.J = 10;
+
+% thresholding operators (default soft thresholding)
+soft = @(z, lambda) sign(z).*max(abs(z) - lambda, 0);
+% smoothHard = @(z, lambda) (abs(z) >= lambda).*(z.*exp(-alpha./(exp(abs(z)-lambda)-1).^2));
+% pshrink = @(z, lambda) sign(z).*max(abs(z) - lambda^(2-p)*abs(z).^(p-1), 0);
+% energyNorm = @(z, lambda) z/(1 + lambda/2);
+% l2norm = @(z, lambda) max(1 - lambda/norm(z,2), 0)*z;
+
+% set thresholding (for soft */paramsolver.sigma* can be ommited)
+param.thresholding = @(z) soft(z, paramsolver.lambda/paramsolver.sigma);
 
 %% get masks from dpai
 masks = dir("../spectrogram_masks/*.mat");
@@ -114,24 +127,24 @@ end
 for nn=1:NN % iterate signals
 
     current_signal = data{nn};
-    spect = param.S(current_signal); % compute spec from current signal
+    sgram = param.G(current_signal); % compute sgram from current signal
     
-    for m=1:size(my_masks,1) % iterate masks 1--6 from janssen2
+    for m=1:size(my_masks,1) % iterate masks 1--6 from JanssenTF
 
-        % shorten masks if incompatible length with spec
-        if size(spect,2)~= size(my_masks(m,:),2)
-            my_masks = my_masks(:,1:size(spect,2));
+        % shorten masks if incompatible length with sgram
+        if size(sgram,2)~= size(my_masks(m,:),2)
+            my_masks = my_masks(:,1:size(sgram,2));
             disp("reduced size of masks")
         end
 
         current_mask  = my_masks(m,:);
-        gapped_spec = spect.*current_mask;
+        corrupted_sgram = sgram.*current_mask;
 
-        % save gapped spectrogram as solution
-        solution.(methodLabels{1}){nn,m} = gapped_spec;
+        % save corrupted spectrogram as solution
+        solution.(methodLabels{1}){nn,m} = corrupted_sgram;
         
         % find indexes with zeros
-        indxs_gaps = find(all(gapped_spec == 0,1));
+        indxs_gaps = find(all(corrupted_sgram == 0,1));
         tic
         for gap=1:5 % iterate gaps
             % get indexes of gap
@@ -142,7 +155,7 @@ for nn=1:NN % iterate signals
             segment_indx = (gap_indx(1)-l_pad:gap_indx(end)+r_pad);
             
             % in case bigger padding is used
-            if segment_indx(end)>size(spect,2)
+            if segment_indx(end)>size(sgram,2)
                 segment_indx = segment_indx(:,1:end-w/a);
             elseif segment_indx(1)<= 0
                 segment_indx = segment_indx(:, 1+w/a:end);
@@ -150,31 +163,28 @@ for nn=1:NN % iterate signals
 
             % get cutout spectrogram, mask, signal
             segment.mask = current_mask(segment_indx);
-            segment.gapped = gapped_spec(:,segment_indx);
-            segment.gapped_signal = param.S_adj(segment.gapped);
+            segment.corrupted = corrupted_sgram(:,segment_indx);
+            segment.corrupted_signal = param.G_adj(segment.corrupted);
             
 
             % normalize input signal and cutout spectrogram
-            segment.max = max(segment.gapped_signal);
-            segment.n_oracle = spect(:,segment_indx)/segment.max;
-            segment.n_signal = segment.gapped_signal/segment.max;
-            segment.n_spec = segment.gapped/segment.max;
+            segment.max = max(abs(segment.corrupted_signal));
+            segment.n_oracle = sgram(:,segment_indx)/segment.max;
+            segment.n_signal = segment.corrupted_signal/segment.max;
+            segment.n_sgram = segment.corrupted/segment.max;
             
-            % set inner and outer iterations for U−PHAIN
-            paramsolver.I = 500;
-            paramsolver.J = 10;
             param.type = "U-PHAIN-TF-GCPA";
             % get reconstructed segment
-            [segment.solution] = PHAINmain_TF(segment.n_signal, segment.n_spec, segment.mask, param, paramsolver,segment.n_oracle);
+            [segment.solution] = PHAINmain_TF(segment.n_signal, segment.n_sgram, segment.mask, param, paramsolver,segment.n_oracle);
             % save rec. segment to solution
             solution.(methodLabels{1}){nn,m}(:,segment_indx) = segment.solution*segment.max;
 
         end
         TIME(nn,m,1) = toc;
-        SNR_spec(nn,m,1) = snr(spect,spect-solution.(methodLabels{1}){nn,m});
+        SNR_sgram(nn,m,1) = snr(sgram,sgram-solution.(methodLabels{1}){nn,m});
 
-        signal_data = param.S_adj(spect);
-        signal_result = param.S_adj(solution.(methodLabels{1}){nn,m});
+        signal_data = param.G_adj(sgram);
+        signal_result = param.G_adj(solution.(methodLabels{1}){nn,m});
 
         % write audio to file
         % name_audio = "results/example"+nn+"mask"+m+".wav";
@@ -187,10 +197,13 @@ for nn=1:NN % iterate signals
 end
 %% plot
 
-
-
-
-
+% note that the results in the paper are computed from .wav signals
+masks = 1:6;
+SNRs = mean(SNR_sig);
+figure;
+plot(masks, SNRs);
+xlabel("gap length");
+ylabel("mean SNR [dB]")
 
 %% functions
 
@@ -213,26 +226,12 @@ function IF = calcInstFreq(spec,diffSpec,fftLen,winLen,flooringCoeff)
     IF = (fftLen/winLen)*IF; % compensation necessary when "fftLen ~= winLen"
 end
 
-function iPCspec = instPhaseCorrection(spec,IF,shiftLen,fftLen)
+function phaseCor = rotations(IF,shiftLen,fftLen)
     % instPhaseCorrection: Calculating instantaneous-phase-corrected spectrogram.
     
     sigLen = shiftLen*size(IF,2); % L (= a * N) : signal length
     freqShift = sigLen/fftLen;    % b (= L / M) : frequency stepsize
     
     idxVariation = freqShift*IF*shiftLen/sigLen;   % b * delta * a / L (in Eq. (29) of [1])
-    cumPhase = 2*pi*mod(cumsum(idxVariation,2),1); % mod for avoiding huge value
-    
-    iPCspec = exp(-1i*cumPhase).*spec; % implementation of Eq. (29) of [1]
-end
-
-function spec = invInstPhaseCorrection(iPCspec,IF,shiftLen,fftLen)
-    % invInstPhaseCorrection: Inverting instantaneous phase correction.
-    
-    sigLen = shiftLen*size(IF,2); % L (= a * N) : signal length
-    freqShift = sigLen/fftLen;    % b (= L / M) : frequency stepsize
-    
-    idxVariation = freqShift*IF*shiftLen/sigLen;   % b * delta * a / L (in Eq. (29) of [1])
-    cumPhase = 2*pi*mod(cumsum(idxVariation,2),1); % mod for avoiding huge value
-    
-    spec = exp(1i*cumPhase).*iPCspec; % inverting phase correction
+    phaseCor = 2*pi*mod(cumsum(idxVariation,2),1); % mod for avoiding huge value
 end
