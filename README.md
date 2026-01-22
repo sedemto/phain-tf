@@ -14,7 +14,7 @@ The paper compares the recent methods abbreviated DPAI and JanssenTF with a newl
  - `IRMAS_five_seconds` contains a subset of the IRMAS dataset created using the information available at [JanssenTF](https://github.com/rajmic/spectrogram-inpainting). The original IRMAS dataset can be downloaded [here](https://www.upf.edu/web/mtg/irmas).
 - The spectrogram masks used in our experiments are read from the `spectrogram_masks` folder.
 
-Note that to exactly reproduce the SNR and ODG results, .wav signals need to be created from the reconstructed signals first.
+Note that to exactly reproduce the SNR and ODG results, first, .wav signals need to be created from the reconstructed signals.
 
 ## Dependencies
 The Matlab codes for U-PHAIN-TF use the [LTFAT](https://ltfat.org/) and the Signal Processing Toolbox. We used Matlab R2025a in our experiments.
