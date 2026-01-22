@@ -1,0 +1,289 @@
+---
+layout: default
+---
+
+<p>This is the accompanying page for the preprint article <em>Audio Inpainting in Time-Frequency Domain with Phase-Aware Prior</em> authored by Peter Balušík and Pavel Rajmic.</p>
+<blockquote>
+<p>The so-called audio inpainting problem in the time domain refers to estimating missing segments of samples within a signal. Over the years, several methods have been developed for such type of audio inpainting. In contrast to this case, a time-frequency variant of inpainting appeared in the literature, where the challenge is to reconstruct missing spectrogram columns with reliable information. We propose a method to address this time-frequency audio inpainting problem. Our approach is based on the recently introduced phase-aware signal prior that exploits an estimate of the instantaneous frequency. An optimization problem is formulated and solved using the generalized Chambolle–Pock algorithm. The proposed method is evaluated both objectively and subjectively against other time-frequency inpainting methods, specifically a deep-prior neural network and the autoregression-based approach known as Janssen-TF. Our proposed approach surpassed these methods in the objective evaluation as well as in the conducted listening test. Moreover, this outcome is achieved with a substantially reduced computational requirement compared to alternative methods.</p>
+</blockquote>
+<p>The preprint is available at <a href="">arXiv</a>.</p>
+
+<h1>Audio examples from the listening test</h1>
+You can listen to the audio excerpts used in the listening test.
+The denotation of the six examples is the same as in the article
+<a href="https://fmiotello.github.io/dpai/">Deep Prior-Based Audio Inpainting Using Multi-Resolution Harmonic Convolutional Neural Networks</a>.
+
+<h2>Example0 (piano)</h2>
+<table>
+	<thead>
+		<tr>
+			<th>Gap size</th>
+			<th>2 columns</th>
+			<th>4 columns</th>
+			<th>6 columns</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Original audio</td>
+			<td><audio src="audio-listening_test/original/dual_audio_original_example0.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/original/dual_audio_original_example0.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/original/dual_audio_original_example0.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>Corrupted audio</td>
+			<td><audio src="audio-listening_test/corrupted/dual_corrupted_audio_example0mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/corrupted/dual_corrupted_audio_example0mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/corrupted/dual_corrupted_audio_example0mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>DPAI with context</td>
+			<td><audio src="audio-listening_test/DPAI_with_context/dpai_dual_example0mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/DPAI_with_context/dpai_dual_example0mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/DPAI_with_context/dpai_dual_example0mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>JanssenTF ADMM</td>
+			<td><audio src="audio-listening_test/JanssenTF_ADMM/janTF_dual_example0mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/JanssenTF_ADMM/janTF_dual_example0mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/JanssenTF_ADMM/janTF_dual_example0mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>U-PHAIN-TF</td>
+			<td><audio src="audio-listening_test/U-PHAIN-TF/gcpa_dual_example0mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/U-PHAIN-TF/gcpa_dual_example0mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/U-PHAIN-TF/gcpa_dual_example0mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Example1 (piano)</h2>
+<table>
+	<thead>
+		<tr>
+			<th>Gap size</th>
+			<th>2 columns</th>
+			<th>4 columns</th>
+			<th>6 columns</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Original audio</td>
+			<td><audio src="audio-listening_test/original/dual_audio_original_example1.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/original/dual_audio_original_example1.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/original/dual_audio_original_example1.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>Corrupted audio</td>
+			<td><audio src="audio-listening_test/corrupted/dual_corrupted_audio_example1mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/corrupted/dual_corrupted_audio_example1mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/corrupted/dual_corrupted_audio_example1mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>DPAI with context</td>
+			<td><audio src="audio-listening_test/DPAI_with_context/dpai_dual_example1mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/DPAI_with_context/dpai_dual_example1mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/DPAI_with_context/dpai_dual_example1mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>JanssenTF ADMM</td>
+			<td><audio src="audio-listening_test/JanssenTF_ADMM/janTF_dual_example1mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/JanssenTF_ADMM/janTF_dual_example1mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/JanssenTF_ADMM/janTF_dual_example1mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>U-PHAIN-TF</td>
+			<td><audio src="audio-listening_test/U-PHAIN-TF/gcpa_dual_example1mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/U-PHAIN-TF/gcpa_dual_example1mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/U-PHAIN-TF/gcpa_dual_example1mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Example3 (voice)</h2>
+<table>
+	<thead>
+		<tr>
+			<th>Gap size</th>
+			<th>2 columns</th>
+			<th>4 columns</th>
+			<th>6 columns</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Original audio</td>
+			<td><audio src="audio-listening_test/original/dual_audio_original_example3.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/original/dual_audio_original_example3.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/original/dual_audio_original_example3.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>Corrupted audio</td>
+			<td><audio src="audio-listening_test/corrupted/dual_corrupted_audio_example3mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/corrupted/dual_corrupted_audio_example3mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/corrupted/dual_corrupted_audio_example3mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>DPAI with context</td>
+			<td><audio src="audio-listening_test/DPAI_with_context/dpai_dual_example3mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/DPAI_with_context/dpai_dual_example3mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/DPAI_with_context/dpai_dual_example3mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>JanssenTF ADMM</td>
+			<td><audio src="audio-listening_test/JanssenTF_ADMM/janTF_dual_example3mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/JanssenTF_ADMM/janTF_dual_example3mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/JanssenTF_ADMM/janTF_dual_example3mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>U-PHAIN-TF</td>
+			<td><audio src="audio-listening_test/U-PHAIN-TF/gcpa_dual_example3mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/U-PHAIN-TF/gcpa_dual_example3mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/U-PHAIN-TF/gcpa_dual_example3mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Example4 (music)</h2>
+<table>
+	<thead>
+		<tr>
+			<th>Gap size</th>
+			<th>2 columns</th>
+			<th>4 columns</th>
+			<th>6 columns</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Original audio</td>
+			<td><audio src="audio-listening_test/original/dual_audio_original_example4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/original/dual_audio_original_example4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/original/dual_audio_original_example4.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>Corrupted audio</td>
+			<td><audio src="audio-listening_test/corrupted/dual_corrupted_audio_example4mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/corrupted/dual_corrupted_audio_example4mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/corrupted/dual_corrupted_audio_example4mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>DPAI with context</td>
+			<td><audio src="audio-listening_test/DPAI_with_context/dpai_dual_example4mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/DPAI_with_context/dpai_dual_example4mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/DPAI_with_context/dpai_dual_example4mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>JanssenTF ADMM</td>
+			<td><audio src="audio-listening_test/JanssenTF_ADMM/janTF_dual_example4mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/JanssenTF_ADMM/janTF_dual_example4mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/JanssenTF_ADMM/janTF_dual_example4mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>U-PHAIN-TF</td>
+			<td><audio src="audio-listening_test/U-PHAIN-TF/gcpa_dual_example4mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/U-PHAIN-TF/gcpa_dual_example4mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/U-PHAIN-TF/gcpa_dual_example4mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Example5 (music)</h2>
+<table>
+	<thead>
+		<tr>
+			<th>Gap size</th>
+			<th>2 columns</th>
+			<th>4 columns</th>
+			<th>6 columns</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Original audio</td>
+			<td><audio src="audio-listening_test/original/dual_audio_original_example5.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/original/dual_audio_original_example5.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/original/dual_audio_original_example5.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>Corrupted audio</td>
+			<td><audio src="audio-listening_test/corrupted/dual_corrupted_audio_example5mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/corrupted/dual_corrupted_audio_example5mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/corrupted/dual_corrupted_audio_example5mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>DPAI with context</td>
+			<td><audio src="audio-listening_test/DPAI_with_context/dpai_dual_example5mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/DPAI_with_context/dpai_dual_example5mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/DPAI_with_context/dpai_dual_example5mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>JanssenTF ADMM</td>
+			<td><audio src="audio-listening_test/JanssenTF_ADMM/janTF_dual_example5mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/JanssenTF_ADMM/janTF_dual_example5mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/JanssenTF_ADMM/janTF_dual_example5mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>U-PHAIN-TF</td>
+			<td><audio src="audio-listening_test/U-PHAIN-TF/gcpa_dual_example5mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/U-PHAIN-TF/gcpa_dual_example5mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/U-PHAIN-TF/gcpa_dual_example5mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Example7 (voice)</h2>
+<table>
+	<thead>
+		<tr>
+			<th>Gap size</th>
+			<th>2 columns</th>
+			<th>4 columns</th>
+			<th>6 columns</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Original audio</td>
+			<td><audio src="audio-listening_test/original/dual_audio_original_example7.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/original/dual_audio_original_example7.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/original/dual_audio_original_example7.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>Corrupted audio</td>
+			<td><audio src="audio-listening_test/corrupted/dual_corrupted_audio_example7mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/corrupted/dual_corrupted_audio_example7mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/corrupted/dual_corrupted_audio_example7mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>DPAI with context</td>
+			<td><audio src="audio-listening_test/DPAI_with_context/dpai_dual_example7mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/DPAI_with_context/dpai_dual_example7mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/DPAI_with_context/dpai_dual_example7mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>JanssenTF ADMM</td>
+			<td><audio src="audio-listening_test/JanssenTF_ADMM/janTF_dual_example7mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/JanssenTF_ADMM/janTF_dual_example7mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/JanssenTF_ADMM/janTF_dual_example7mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+		<tr>
+			<td>U-PHAIN-TF</td>
+			<td><audio src="audio-listening_test/U-PHAIN-TF/gcpa_dual_example7mask2.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/U-PHAIN-TF/gcpa_dual_example7mask4.wav" controls preload style="width: 200px;"></audio></td>
+			<td><audio src="audio-listening_test/U-PHAIN-TF/gcpa_dual_example7mask6.wav" controls preload style="width: 200px;"></audio></td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h1>Supplementary plots</h1>
+
+<p>
+	The plots below are not presented in the paper due to the lack of space.
+	The next box plot presents the same listing test scores as in the paper, but split according to the size of gaps.
+	For shorter gaps the results of Janssen-TF and U-PHAIN-TF are comparable, for larger gaps U-PHAIN-TF is the clear winner.
+</p>
+
+<img src="figs/post-screened-grouped-gap-length.svg">
