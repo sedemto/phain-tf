@@ -6,6 +6,13 @@
 figcaption {
   text-align: center;
 }
+.row {
+  display: flex;
+}
+.column {
+  flex: 33.33%;
+  padding: 5px;
+}
 table, th, td {
   border: none;
   border-collapse: collapse;
