@@ -57,7 +57,7 @@ if param.type == "U-PHAIN-TF-GCPA"
     
     for j = 1:paramsolver.J
         % calculate GCPA
-        x_hat = GCPA(param, paramsolver, oracle);
+        [x_hat, y_hat, z_hat] = GCPA(param, paramsolver, oracle);
     
         % stopping criterion
         if norm(x_old - x_hat) < paramsolver.epsilon
@@ -76,7 +76,12 @@ if param.type == "U-PHAIN-TF-GCPA"
         param.L = @(x) param.D(param.R(param.G(x)));
         param.L_adj = @(u) param.G_adj(param.R_adj(param.D_adj(u)));
         
-    
+        if paramsolver.updateVars
+            paramsolver.x0 = x_hat;
+            paramsolver.y0 = y_hat;
+            paramsolver.z0 = z_hat;
+        end
+        
         x_old = x_hat;
     end
     % output spectrogram

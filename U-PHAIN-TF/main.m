@@ -77,6 +77,7 @@ paramsolver.sigma = 1;  % step size
 paramsolver.eta = 4; % step size
 paramsolver.alpha = 1;  % relaxation parameter
 paramsolver.lambda = 0.01; % threshold (regularization parameter)
+paramsolver.updateVars = false;
 
 % p = 0.9; % uncomment for p-shrinkage thresholding
 % alpha = 10e-2; % uncomment for smooth-hard threshodling 

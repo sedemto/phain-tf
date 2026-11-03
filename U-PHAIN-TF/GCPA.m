@@ -1,4 +1,4 @@
-function [x] = GCPA(param, paramsolver, oracle)
+function [x,y,z] = GCPA(param, paramsolver, oracle)
 %% initialization
 x = paramsolver.x0;
 y = paramsolver.y0;
