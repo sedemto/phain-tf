@@ -432,15 +432,81 @@ The denotation of the examples is the same as in the article
 
 <h1>Supplementary plots</h1>
 
+<h2>Additional ODG results</h2>
+<p>
+	The plot presents additional ODG results computed on the IRMAS
+	dataset, complementing those in the paper. Besides the proposed U-PHAIN-TF and the L1-TF baseline, it shows
+	the reconstruction with no prior, i.e., U-PHAIN-TF with &lambda; set to
+	0, and U-PHAIN-TF-warmInit, in which the primal and dual variables are
+	warm-started using the solution of the previous inner loop. In the
+	code, this variant is realized by setting the parameter
+	<code>updateVars=true</code>.
+</p>
+
+<img src="figs/additional-odg-results.svg">
+
+<h2>Subjective listening test results</h2>
 <p>
 	The plot below is not presented in the paper due to the lack of space.
-</p>
-<p>
-	The box plot presents the same test scores as in the paper, but split according to the size of gaps.
-	For shorter gaps the results of Janssen-TF and U-PHAIN-TF are comparable and near-perfect, for larger gaps U-PHAIN-TF is the clear winner.
+	The box plot presents the same test scores as in the paper, but split
+	according to the size of gaps.
+	For shorter gaps the results of Janssen-TF and U-PHAIN-TF are
+	comparable and near-perfect, for larger gaps U-PHAIN-TF is the clear
+	winner.
 </p>
 
 <img src="figs/post-screened-grouped-gap-length.svg">
+
+<h2>The effects of the number of inner iterations on the optimal &lambda; value</h2>
+<p>
+	Note that the optimal value of &lambda; may change when the number of
+	inner iterations is varied. The following plot compares the mean ODG
+	attained by U-PHAIN-TF for different numbers of inner iterations
+	(100, 500 and 1000) for different values of &lambda;, computed on the
+	DPAI dataset.
+</p>
+
+<img src="figs/lambda-inner-iters.svg">
+
+<h1>Wilcoxon signed-rank test</h1>
+
+<p>
+	To assess the significance of the differences between the methods in
+	the subjective listening test, we conducted the Wilcoxon signed-rank
+	test, using the implementation available in MATLAB:
+	<code>[p, h] = signrank(x, y, 'Tail', 'right')</code>.
+	It returns the <em>p</em>-value of a paired, right-sided test for the
+	null hypothesis that <code>x &minus; y</code> comes from a distribution
+	with zero median. The output <code>h&thinsp;=&thinsp;1</code> indicates
+	a rejection of the null hypothesis, whereas
+	<code>h&thinsp;=&thinsp;0</code> indicates a failure to reject the null
+	hypothesis at the 5&thinsp;% significance level. In words, simplified:
+	<em>p</em> &lt; 0.05 &rarr; <code>h</code> = 1 &rarr; null hypothesis
+	rejected &rarr; <code>x</code> &gt; <code>y</code>.
+</p>
+
+<p>
+	In the table below, <code>x</code> corresponds to the method in the
+	first column and <code>y</code> to the method in the second column.
+	All three comparisons of the listening test scores are statistically
+	significant.
+</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>Method 1 (<em>x</em>)</th>
+			<th>Method 2 (<em>y</em>)</th>
+			<th><em>p</em>-value</th>
+			<th>h</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr><td>U-PHAIN-TF</td><td>Janssen-TF</td><td>5.62 &times; 10<sup>&minus;17</sup></td><td>1</td></tr>
+		<tr><td>U-PHAIN-TF</td><td>DPAI</td><td>9.50 &times; 10<sup>&minus;34</sup></td><td>1</td></tr>
+		<tr><td>Janssen-TF</td><td>DPAI</td><td>3.16 &times; 10<sup>&minus;15</sup></td><td>1</td></tr>
+	</tbody>
+</table>
 
 
 <h1>Masks</h1>
