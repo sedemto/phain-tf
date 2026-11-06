@@ -1,0 +1,64 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+figcaption {
+  text-align: center;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 33.33%;
+  padding: 5px;
+}
+
+table, th, td {
+  border: none;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+img {
+  max-width: 100%;
+}
+
+#main_content p {
+  text-align: justify;
+}
+
+.pUnderAlpha {
+  background-color: #aaffaa;
+  color: #000000;
+}
+
+.pAboveAlpha {
+  background-color: #ffaaaa;
+  color: #000000;
+}
+
+/* "Read the preprint" ribbon in the header, matching the fork-me banner */
+#preprint_banner {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 190px;
+  z-index: 10;
+  padding: 10px 20px;
+  color: #fff;
+  background: #0090ff;
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+@media screen and (max-width: 480px) {
+  #preprint_banner {
+    right: 10px;
+    top: 40px;
+  }
+}
