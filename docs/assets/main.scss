@@ -1,0 +1,55 @@
+---
+---
+
+@import "minima";
+
+figcaption {
+  text-align: center;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 33.33%;
+  padding: 5px;
+}
+
+table, th, td {
+  border: none;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+img {
+  max-width: 100%;
+}
+
+.pUnderAlpha {
+  background-color: #aaffaa;
+  color: #000000;
+}
+
+.pAboveAlpha {
+  background-color: #ffaaaa;
+  color: #000000;
+}
+
+/* Header buttons (Read the preprint / View on GitHub) */
+@media screen and (min-width: 600px) {
+  .site-header .page-link.btn {
+    display: inline-block;
+    padding: 0.35rem 0.8rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+    background-color: rgba(0, 0, 0, 0.06);
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.12);
+      text-decoration: none;
+    }
+  }
+}

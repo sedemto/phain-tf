@@ -430,20 +430,67 @@ The denotation of the examples is the same as in the article
 </table>
 
 
-<h1>Supplementary plots</h1>
+<h1>Supplementary material</h1>
 
-<h2>Additional ODG results</h2>
+<h2>Masks</h2>
+
 <p>
-	The plot presents additional ODG results computed on the IRMAS
-	dataset, complementing those in the paper. Besides the proposed U-PHAIN-TF and the L1-TF baseline, it shows
-	the reconstruction with no prior, i.e., U-PHAIN-TF with &lambda; set to
-	0, and U-PHAIN-TF-warmInit, in which the primal and dual variables are
-	warm-started using the solution of the previous inner loop. In the
-	code, this variant is realized by setting the parameter
-	<code>updateVars=true</code>.
+	Only three masks were shown in the paper. Here, each mask is shown.
 </p>
 
-<img src="figs/additional-odg-results.svg">
+<div class="row">
+  <div class="column">
+
+<figure>
+    <img src="figs/mask1.svg"/>
+    <figcaption>Mask 1</figcaption>
+</figure>
+
+  </div>
+  <div class="column">
+
+<figure>
+    <img src="figs/mask2.svg"/>
+    <figcaption>Mask 2</figcaption>
+</figure>
+
+  </div>
+  <div class="column">
+
+<figure>
+    <img src="figs/mask3.svg"/>
+    <figcaption>Mask 3</figcaption>
+</figure>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="column">
+
+<figure>
+    <img src="figs/mask4.svg"/>
+    <figcaption>Mask 4</figcaption>
+</figure>
+
+  </div>
+  <div class="column">
+
+<figure>
+    <img src="figs/mask5.svg"/>
+    <figcaption>Mask 5</figcaption>
+</figure>
+
+  </div>
+  <div class="column">
+
+<figure>
+    <img src="figs/mask6.svg"/>
+    <figcaption>Mask 6</figcaption>
+</figure>
+
+  </div>
+</div>
 
 <h2>Subjective listening test results</h2>
 <p>
@@ -451,24 +498,13 @@ The denotation of the examples is the same as in the article
 	The box plot presents the same test scores as in the paper, but split
 	according to the size of gaps.
 	For shorter gaps the results of Janssen-TF and U-PHAIN-TF are
-	comparable and near-perfect, for larger gaps U-PHAIN-TF is the clear
-	winner.
+	comparable and near-perfect due to the redundancy of the STFT; for
+	larger gaps U-PHAIN-TF is the clear winner.
 </p>
 
 <img src="figs/post-screened-grouped-gap-length.svg">
 
-<h2>The effects of the number of inner iterations on the optimal &lambda; value</h2>
-<p>
-	Note that the optimal value of &lambda; may change when the number of
-	inner iterations is varied. The following plot compares the mean ODG
-	attained by U-PHAIN-TF for different numbers of inner iterations
-	(100, 500 and 1000) for different values of &lambda;, computed on the
-	DPAI dataset.
-</p>
-
-<img src="figs/lambda-inner-iters.svg">
-
-<h1>Wilcoxon signed-rank test</h1>
+<h2>Wilcoxon signed-rank test</h2>
 
 <p>
 	To assess the significance of the differences between the methods in
@@ -508,70 +544,29 @@ The denotation of the examples is the same as in the article
 	</tbody>
 </table>
 
-
-<h1>Masks</h1>
-
+<h2>Additional ODG results</h2>
 <p>
-	Only three masks were shown in the paper. Here, each mask is shown.
+	The plot presents additional ODG results computed on the IRMAS
+	dataset, complementing those in the paper. Besides the proposed
+	U-PHAIN-TF and the L1-TF baseline, it shows the reconstruction with
+	no prior, i.e., U-PHAIN-TF with &lambda;=0, and U-PHAIN-TF-warmRestart,
+	in which the primal and dual variables are warm-started using the
+	solution of the previous inner loop. In the code, this variant is
+	realized by setting the parameter <code>warmRestart=true</code>.
 </p>
 
-<div class="row">
-  <div class="column">
+<img src="figs/additional-odg-results.svg">
 
-<figure>
-    <img src="figs/mask1.svg"/>
-    <figcaption>Mask 1</figcaption>
-</figure>
+<h2>The effects of the number of inner iterations on the optimal &lambda; value</h2>
+<p>
+	Note that the optimal value of &lambda; may change when the number of
+	inner iterations is varied. The following plot compares the mean ODG
+	attained by U-PHAIN-TF for different numbers of inner iterations
+	(100, 500 and 1000) for different values of &lambda;, computed on the
+	DPAI dataset.
+</p>
 
-  </div>
-  <div class="column">
-
-<figure>
-    <img src="figs/mask2.svg"/>
-    <figcaption>Mask 2</figcaption>
-</figure>
-    
-    
-  </div>
-  <div class="column">
-
-<figure>
-    <img src="figs/mask3.svg"/>
-    <figcaption>Mask 3</figcaption>
-</figure>
-
-
-  </div>
-</div>
-
-<div class="row">
-  <div class="column">
-
-<figure>
-    <img src="figs/mask4.svg"/>
-    <figcaption>Mask 4</figcaption>
-</figure>
-
-  </div>
-  <div class="column">
-
-    
-<figure>
-    <img src="figs/mask5.svg"/>
-    <figcaption>Mask 5</figcaption>
-</figure>
-    
-  </div>
-  <div class="column">
-
-
-<figure>
-    <img src="figs/mask6.svg"/>
-    <figcaption>Mask 6</figcaption>
-</figure>
-
-  </div>
-</div>
+<img src="figs/lambda-inner-iters.svg">
 
 
 

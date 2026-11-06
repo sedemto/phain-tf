@@ -306,7 +306,7 @@ font-family="Helvetica" font-size="12" font-weight="400" font-style="normal"
 font-family="Helvetica" font-size="12" font-weight="400" font-style="normal" 
 >
 <text fill="#212121" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="0" font-family="Helvetica" font-size="12" font-weight="400" font-style="normal" 
- >U-PHAIN-TF-warmInit</text>
+ >U-PHAIN-TF-warmRestart</text>
 </g>
 
 <g fill="#212121" fill-opacity="1" stroke="#212121" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(0.749497,0,0,0.749782,829.944,44.3808)"
@@ -326,7 +326,7 @@ font-family="Helvetica" font-size="12" font-weight="400" font-style="normal"
 <g fill="none" stroke="#212121" stroke-opacity="1" stroke-width="0.666667" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="2" transform="matrix(0.749497,0,0,0.749782,-114.422,-31.8653)"
 font-family="Helvetica" font-size="12" font-weight="400" font-style="normal" 
 >
-<path vector-effect="none" fill-rule="evenodd" d="M1213,121 L1213,60 L1382,60 L1382,121 L1213,121"/>
+<path vector-effect="none" fill-rule="evenodd" d="M1213,121 L1213,60 L1394,60 L1394,121 L1213,121"/>
 </g>
 </g>
 </svg>
