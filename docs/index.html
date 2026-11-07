@@ -512,18 +512,18 @@ The denotation of the examples is the same as in the article
 	test, using the implementation available in MATLAB:
 	<code>[p, h] = signrank(x, y, 'Tail', 'right')</code>.
 	It returns the <em>p</em>-value of a paired, right-sided test for the
-	null hypothesis that <code>x &minus; y</code> comes from a distribution
-	with zero median. The output <code>h&thinsp;=&thinsp;1</code> indicates
+	null hypothesis that <em>x &minus; y</em> comes from a distribution
+	with zero median. The output <em>h</em>&thinsp;=&thinsp;1 indicates
 	a rejection of the null hypothesis, whereas
-	<code>h&thinsp;=&thinsp;0</code> indicates a failure to reject the null
+	<em>h</em>&thinsp;=&thinsp;0 indicates a failure to reject the null
 	hypothesis at the 5&thinsp;% significance level. In words, simplified:
-	<em>p</em> &lt; 0.05 &rarr; <code>h</code> = 1 &rarr; null hypothesis
-	rejected &rarr; <code>x</code> &gt; <code>y</code>.
+	<em>p</em> &lt; 0.05 &rarr; <em>h</em> = 1 &rarr; null hypothesis
+	rejected &rarr; <em>x</em> &gt; <em>y</em>.
 </p>
 
 <p>
-	In the table below, <code>x</code> corresponds to the method in the
-	first column and <code>y</code> to the method in the second column.
+	In the table below, <em>x</em> corresponds to the method in the
+	first column and <em>y</em> to the method in the second column.
 	All three comparisons of the listening test scores are statistically
 	significant.
 </p>
@@ -534,7 +534,7 @@ The denotation of the examples is the same as in the article
 			<th>Method 1 (<em>x</em>)</th>
 			<th>Method 2 (<em>y</em>)</th>
 			<th><em>p</em>-value</th>
-			<th>h</th>
+			<th><em>h</em></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -549,7 +549,7 @@ The denotation of the examples is the same as in the article
 	The plot presents additional ODG results computed on the IRMAS
 	dataset, complementing those in the paper. Besides the proposed
 	U-PHAIN-TF and the L1-TF baseline, it shows the reconstruction with
-	no prior, i.e., U-PHAIN-TF with &lambda;=0, and U-PHAIN-TF-warmRestart,
+	no prior, i.e., U-PHAIN-TF with <em>&lambda;</em>=0, and U-PHAIN-TF-warmRestart,
 	in which the primal and dual variables are warm-started using the
 	solution of the previous inner loop. In the code, this variant is
 	realized by setting the parameter <code>warmRestart=true</code>.
@@ -557,12 +557,12 @@ The denotation of the examples is the same as in the article
 
 <img src="figs/additional-odg-results.svg">
 
-<h2>The effects of the number of inner iterations on the optimal &lambda; value</h2>
+<h2>The effects of the number of inner iterations on the optimal <em>&lambda;</em> value</h2>
 <p>
-	Note that the optimal value of &lambda; may change when the number of
+	Note that the optimal value of <em>&lambda;</em> may change when the number of
 	inner iterations is varied. The following plot compares the mean ODG
 	attained by U-PHAIN-TF for different numbers of inner iterations
-	(100, 500 and 1000) for different values of &lambda;, computed on the
+	(100, 500 and 1000) for different values of <em>&lambda;</em>, computed on the
 	DPAI dataset.
 </p>
 
