@@ -5,6 +5,7 @@
 // theme import so the !default theme variables pick these up)
 $header-bg-color: #1e293b;
 $header-bg-color-secondary: #0f172a;
+$section-headings-color: #1e293b;
 
 @import "{{ site.theme }}";
 
@@ -22,6 +23,10 @@ table, th, td {
   border: none;
   border-collapse: collapse;
   font-size: 14px;
+}
+
+.main-content p {
+  text-align: justify;
 }
 .pUnderAlpha{
   background-color: #aaffaa;
