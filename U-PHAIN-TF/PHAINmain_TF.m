@@ -76,7 +76,7 @@ if param.type == "U-PHAIN-TF-GCPA"
         param.L = @(x) param.D(param.R(param.G(x)));
         param.L_adj = @(u) param.G_adj(param.R_adj(param.D_adj(u)));
         
-        if paramsolver.updateVars
+        if paramsolver.warmRestart
             paramsolver.x0 = x_hat;
             paramsolver.y0 = y_hat;
             paramsolver.z0 = z_hat;
